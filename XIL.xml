@@ -1,0 +1,1343 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>XIL</name>
+    </assembly>
+    <members>
+        <member name="T:XIL.Assembler.Assembler">
+            <summary>
+            XIL Assembler
+            </summary>
+        </member>
+        <member name="M:XIL.Assembler.Assembler.#ctor(XIL.LangDef.IInstructionImplementation[])">
+            <summary>
+            initialize the assembler with instruction implementations
+            </summary>
+            <param name="instructionImplementations"></param>
+        </member>
+        <member name="M:XIL.Assembler.Assembler.Compile(System.String)">
+            <summary>
+            compile a xil script
+            </summary>
+            <param name="sourcecode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XIL.Assembler.Assembler.Compile(System.String,XIL.Assembler.ICodeGenerator)">
+            <summary>
+            compile a xil script
+            </summary>
+            <param name="sourcecode"></param>
+            <param name="codegen"></param>
+            <returns></returns>
+        </member>
+        <member name="T:XIL.Assembler.CodeGenerator">
+            <summary>
+            codegen
+            </summary>
+        </member>
+        <member name="M:XIL.Assembler.CodeGenerator.#ctor">
+            <summary>
+            constructor
+            </summary>
+        </member>
+        <member name="M:XIL.Assembler.CodeGenerator.AddInstruction(XIL.LangDef.Instruction)">
+            <summary>
+            add an instruction
+            </summary>
+            <param name="instruction"></param>
+        </member>
+        <member name="M:XIL.Assembler.CodeGenerator.AddInstruction(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            add an instruction
+            </summary>
+            <param name="opcode">opcode</param>
+            <param name="op1">operand 1</param>
+            <param name="op2">operand 2</param>
+            <param name="lnb">line number for debug purpose, -1 for ignore</param>
+        </member>
+        <member name="M:XIL.Assembler.CodeGenerator.GetJumpLabel(System.String)">
+            <summary>
+            get a jump label's target
+            </summary>
+        </member>
+        <member name="M:XIL.Assembler.CodeGenerator.AddJumpLabel(System.String,System.Int32)">
+            <summary>
+            add a jump label
+            </summary>
+        </member>
+        <member name="M:XIL.Assembler.CodeGenerator.GetString(System.String)">
+            <summary>
+            retrieve a string constant <para/>
+            return -1 if string constant is not exist
+            </summary>
+        </member>
+        <member name="M:XIL.Assembler.CodeGenerator.AddString(System.String)">
+            <summary>
+            add a string constant <para/>
+            return the index of the added string constant
+            </summary>
+        </member>
+        <member name="M:XIL.Assembler.CodeGenerator.Emit">
+            <summary>
+            emit a program
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XIL.Assembler.CodeGenerator.AddLibrary(System.String)">
+            <summary>
+            add a library metadata
+            </summary>
+            <param name="lib"></param>
+        </member>
+        <member name="M:XIL.Assembler.CodeGenerator.GetLibrary(System.String)">
+            <summary>
+            get a library index
+            </summary>
+            <param name="lib"></param>
+            <returns></returns>
+        </member>
+        <member name="T:XIL.Assembler.CompileResult">
+            <summary>
+            result for a compilation
+            </summary>
+        </member>
+        <member name="F:XIL.Assembler.CompileResult.Success">
+            <summary>
+            success?
+            </summary>
+        </member>
+        <member name="F:XIL.Assembler.CompileResult.Message">
+            <summary>
+            error message
+            </summary>
+        </member>
+        <member name="F:XIL.Assembler.CompileResult.CodeGenerator">
+            <summary>
+            the code generator, to be replaced with an interface
+            </summary>
+        </member>
+        <member name="M:XIL.Assembler.CompileResult.#ctor(System.Boolean,System.String,XIL.Assembler.ICodeGenerator)">
+            <summary>
+            constructor
+            </summary>
+            <param name="success"></param>
+            <param name="msg"></param>
+            <param name="codegen"></param>
+        </member>
+        <member name="T:XIL.Assembler.ICodeGenerator">
+            <summary>
+            ICodeGenerator interface
+            </summary>
+        </member>
+        <member name="M:XIL.Assembler.ICodeGenerator.AddLibrary(System.String)">
+            <summary>
+            add a library metadata
+            </summary>
+            <param name="lib"></param>
+        </member>
+        <member name="M:XIL.Assembler.ICodeGenerator.GetLibrary(System.String)">
+            <summary>
+            get a library index
+            </summary>
+            <param name="lib"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XIL.Assembler.ICodeGenerator.AddInstruction(XIL.LangDef.Instruction)">
+            <summary>
+            add an instruction
+            </summary>
+            <param name="instruction"></param>
+        </member>
+        <member name="M:XIL.Assembler.ICodeGenerator.AddInstruction(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            add an instruction
+            </summary>
+            <param name="op"></param>
+            <param name="op1"></param>
+            <param name="op2"></param>
+            <param name="lnb"></param>
+        </member>
+        <member name="M:XIL.Assembler.ICodeGenerator.AddString(System.String)">
+            <summary>
+            add a string constant <para/>
+            return the index of the added string constant
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XIL.Assembler.ICodeGenerator.GetString(System.String)">
+            <summary>
+            retrieve a string constant <para/>
+            return -1 if string constant is not exist
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XIL.Assembler.ICodeGenerator.AddJumpLabel(System.String,System.Int32)">
+            <summary>
+            add a jump label
+            </summary>
+            <param name="label"></param>
+            <param name="line"></param>
+        </member>
+        <member name="M:XIL.Assembler.ICodeGenerator.GetJumpLabel(System.String)">
+            <summary>
+            get a jump label's target
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XIL.Assembler.ICodeGenerator.Emit">
+            <summary>
+            emit the program
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XIL.Assembler.Parser.label">
+            <summary>
+            label = IDENT COLON NEWLINE
+            </summary>
+        </member>
+        <member name="M:XIL.Assembler.Parser.instruction">
+            <summary>
+            instruction = IDENT 
+            </summary>
+        </member>
+        <member name="F:XIL.Assembler.TokenType.INT">
+            <summary>
+            signed int
+            </summary>
+        </member>
+        <member name="F:XIL.Assembler.TokenType.STRING">
+            <summary>
+            will get converted to intarr string
+            </summary>
+        </member>
+        <member name="F:XIL.Assembler.TokenType.BOOL">
+            <summary>
+            true = 1, false = 0
+            </summary>
+        </member>
+        <member name="F:XIL.Assembler.TokenType.VAR">
+            <summary>
+            variable
+            </summary>
+        </member>
+        <member name="F:XIL.Assembler.TokenType.LABEL">
+            <summary>
+            label
+            </summary>
+        </member>
+        <member name="F:XIL.Assembler.TokenType.IDENT">
+            <summary>
+            an instruction
+            </summary>
+        </member>
+        <member name="F:XIL.Assembler.TokenType.NEWLINE">
+            <summary>
+            newline
+            </summary>
+        </member>
+        <member name="F:XIL.Assembler.TokenType.INVALID">
+            <summary>
+            invalid token
+            </summary>
+        </member>
+        <member name="F:XIL.Assembler.TokenType.EOF">
+            <summary>
+            end of file
+            </summary>
+        </member>
+        <member name="F:XIL.Assembler.TokenType.ANY">
+            <summary>
+            match any token
+            </summary>
+        </member>
+        <member name="T:XIL.LangDef.InstructionAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:XIL.LangDef.InstructionAttribute.OpCode">
+            <summary>
+            operation code
+            </summary>
+        </member>
+        <member name="P:XIL.LangDef.InstructionAttribute.OpName">
+            <summary>
+            operation code's mnemonic
+            </summary>
+        </member>
+        <member name="P:XIL.LangDef.InstructionAttribute.Library">
+            <summary>
+            the library that this is instruction belong to
+            </summary>
+        </member>
+        <member name="M:XIL.LangDef.InstructionAttribute.#ctor(System.Int32,System.String,System.String)">
+            <summary>
+            constructor
+            </summary>
+            <param name="opcode"></param>
+            <param name="opname"></param>
+            <param name="lib"></param>
+        </member>
+        <member name="M:XIL.LangDef.InstructionAttribute.#ctor(XIL.LangDef.InstructionOPCode,System.String)">
+            <summary>
+            constructor
+            </summary>
+            <param name="opcode"></param>
+            <param name="opname"></param>
+        </member>
+        <member name="M:XIL.LangDef.InstructionAttribute.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:XIL.LangDef.IInstructionImplementation">
+            <summary>
+            IInstructionImplementation interface
+            </summary>
+        </member>
+        <member name="T:XIL.LangDef.Instruction">
+            <summary>
+            instruction
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.Instruction.InstructionByteLength">
+            <summary>
+            default byte scheme for an instruction <para/>
+            opcode | op1 | op2 | line_number
+            </summary>
+        </member>
+        <member name="M:XIL.LangDef.Instruction.Deserialize(System.Int32[])">
+            <summary>
+            Decode a bytecodes array to a instruction list
+            </summary>
+            <param name="program"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XIL.LangDef.Instruction.Serialize(System.Collections.Generic.List{XIL.LangDef.Instruction})">
+            <summary>
+            serialize an instruction list to a byte code array
+            </summary>
+            <param name="program"></param>
+            <returns></returns>
+        </member>
+        <member name="P:XIL.LangDef.Instruction.OpCode">
+            <summary>
+            Operation Code
+            </summary>
+        </member>
+        <member name="P:XIL.LangDef.Instruction.FirstOperand">
+            <summary>
+            operand 1
+            </summary>
+        </member>
+        <member name="P:XIL.LangDef.Instruction.SecondOperand">
+            <summary>
+            operand 2
+            </summary>
+        </member>
+        <member name="P:XIL.LangDef.Instruction.LineNumber">
+            <summary>
+            line number for debug purpose
+            </summary>
+        </member>
+        <member name="P:XIL.LangDef.Instruction.LibraryIndex">
+            <summary>
+            library metadata for debug purpose
+            </summary>
+        </member>
+        <member name="M:XIL.LangDef.Instruction.#ctor(XIL.LangDef.InstructionOPCode,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            constructor
+            </summary>
+            <param name="oc"></param>
+            <param name="op1"></param>
+            <param name="op2"></param>
+            <param name="lnb"></param>
+        </member>
+        <member name="M:XIL.LangDef.Instruction.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            constructor
+            </summary>
+            <param name="oc"></param>
+            <param name="op1"></param>
+            <param name="op2"></param>
+            <param name="lnb"></param>
+            <param name="libindex"></param>
+        </member>
+        <member name="P:XIL.LangDef.Instruction.Nop">
+            <summary>
+            nop
+            </summary>
+        </member>
+        <member name="P:XIL.LangDef.Instruction.Exit">
+            <summary>
+            exit
+            </summary>
+        </member>
+        <member name="M:XIL.LangDef.Instruction.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:XIL.LangDef.InstructionOPCode">
+            <summary>
+            Core Instruction Operation Code
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.jmp">
+            <summary>
+            jump lable <para />
+            jump to the given label
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.je">
+            <summary>
+            je lable <para />
+            jump to the given label if a == b
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.jne">
+            <summary>
+            jne lable <para />
+            jump to the given label if a != b
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.jg">
+            <summary>
+            jg lable <para />
+            jump to the given label if a > b
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.jge">
+            <summary>
+            jge lable <para />
+            jump to the given label if a >= b
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.jl">
+            <summary>
+            jl lable <para />
+            jump to the given label if a &lt; b
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.jle">
+            <summary>
+            jle lable <para />
+            jump to the given label if a &lt;= b
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.j1">
+            <summary>
+            j1 lable <para />
+            jump to the given label if tots is 1
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.j0">
+            <summary>
+            j0 lable <para />
+            jump to the given label if tots is 0
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.jel">
+            <summary>
+            jel lable literal <para />
+            jump to the given label if a == literal
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.jnel">
+            <summary>
+            jnel lable literal <para />
+            jump to the given label if a != literal
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.exit">
+            <summary>
+            exit <para/>
+            stop executing, set exit code to tots and clear the stack 
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.pause">
+            <summary>
+            pause <para/>
+            wait for the &lt;tots&gt; ms
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.halt">
+            <summary>
+            halt <para/>
+            halt execution, can only be unhalt by another thread or by the vm
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.unhalt">
+            <summary>
+            unhalt <para/>
+            unhalt another thread indicate by &lt;tots&gt;
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.nop">
+            <summary>
+            nop <para/>
+            do nothing
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.add">
+            <summary>
+            add <para />
+            add 2 tots and push the result
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.sub">
+            <summary>
+            sub <para />
+            subtract 2 tots and push the result
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.mul">
+            <summary>
+            mul <para />
+            multiply 2 tots and push the result
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.div">
+            <summary>
+            div <para />
+            divide 2 tots and push the result
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.mod">
+            <summary>
+            mod <para />
+            modulus 2 tots and push the result
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.dec">
+            <summary>
+            dec <para />
+            decrement tots
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.inc">
+            <summary>
+            inc <para />
+            increment tots
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.neg">
+            <summary>
+            neg <para />
+            negate tots
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.cmp">
+            <summary>
+            cmp <para />
+            cmp 2 tots and push 1, 0 or -1
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.push">
+            <summary>
+            push &lt;var&gt; <para />
+            push the value of &lt;var&gt; on tots
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.yeet">
+            <summary>
+            yeet &lt;literal&gt; <para />
+            yeet &lt;literal&gt; on tots
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.pop">
+            <summary>
+            pop &lt;var&gt; <para />
+            pop the value of tots into &lt;var&gt;
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.load">
+            <summary>
+            load &lt;var&gt; &lt;literal&gt; <para />
+            load &lt;literal&gt; into &lt;var&gt;
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.getstack">
+            <summary>
+            gets <para />
+            push the content of the value at the stack index <para/>
+            which is on tots onto the tots
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.setstack">
+            <summary>
+            sets <para />
+            set the content of the value at the stack index <para/>
+            which is on second tots to tots
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.copy">
+            <summary>
+            copy &lt;var1&gt; &lt;var2&gt; <para />
+            copy value of &lt;var2&gt; into &lt;var1&gt;
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.dup">
+            <summary>
+            dup <para/>
+            duplicate tots
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.swap">
+            <summary>
+            swap <para/>
+            swap 2 tots
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.remove">
+            <summary>
+            remove <para/>
+            remove tots
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.rand">
+            <summary>
+            rand <para />
+            push a random value on tots
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.randseed">
+            <summary>
+            randseed &lt;var&gt; <para />
+            set the random seed of the vm
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.randmax">
+            <summary>
+            randmax &lt;var&gt; <para />
+            push a random value that is lesser than &lt;var&gt; on tots
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.randrange">
+            <summary>
+            randmax &lt;min&gt; &lt;max&gt; <para />
+            push a random value that is in the range of &lt;min&gt; and &lt;max&gt; on tots
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.call">
+            <summary>
+            call &lt;label&gt; <para />
+            store the current ic into return target and jump to the given label
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.ret">
+            <summary>
+            ret <para />
+            jump to the return target
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.brp">
+            <summary>
+            brp <para />
+            break execution
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.req">
+            <summary>
+            req &lt;library's name&gt; <para />
+            check VM for certain library
+            </summary>
+        </member>
+        <member name="F:XIL.LangDef.InstructionOPCode.host">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:XIL.VM.Program">
+            <summary>
+            An in-memory program
+            </summary>
+        </member>
+        <member name="F:XIL.VM.Program.Bytecode">
+            <summary>
+            bytecodes
+            </summary>
+        </member>
+        <member name="F:XIL.VM.Program.StringTable">
+            <summary>
+            string constant table
+            </summary>
+        </member>
+        <member name="M:XIL.VM.Program.#ctor(System.Int32[],System.String[])">
+            <summary>
+            Initialize a new program
+            </summary>
+            <param name="instrs"></param>
+            <param name="strs"></param>
+        </member>
+        <member name="M:XIL.VM.Program.Serialize(System.IO.Stream,XIL.VM.Program)">
+            <summary>
+            serialize a program into a stream for saving
+            </summary>
+            <param name="stream"></param>
+            <param name="program"></param>
+        </member>
+        <member name="M:XIL.VM.Program.Deserialize(System.IO.Stream,XIL.LangDef.Instruction[]@,System.String[]@)">
+            <summary>
+            serialize a program from a stream
+            </summary>
+            <param name="stream"></param>
+            <param name="instructions"></param>
+            <param name="stringTable"></param>
+        </member>
+        <member name="M:XIL.VM.Stack.SnapShot">
+            <summary>
+            get a snapshot of the stack
+            </summary>
+        </member>
+        <member name="T:XIL.VM.Priority">
+            <summary>
+            Thread's priority
+            </summary>
+        </member>
+        <member name="F:XIL.VM.Priority.Low">
+            <summary>
+            1 timeslice
+            </summary>
+        </member>
+        <member name="F:XIL.VM.Priority.Normal">
+            <summary>
+            4 timeslice
+            </summary>
+        </member>
+        <member name="F:XIL.VM.Priority.High">
+            <summary>
+            8 timeslice
+            </summary>
+        </member>
+        <member name="F:XIL.VM.Priority.Exclusive">
+            <summary>
+            run till done
+            </summary>
+        </member>
+        <member name="T:XIL.VM.ThreadState">
+            <summary>
+            Thread's state
+            </summary>
+        </member>
+        <member name="F:XIL.VM.ThreadState.Running">
+            <summary>
+            thread is running
+            </summary>
+        </member>
+        <member name="F:XIL.VM.ThreadState.Pause">
+            <summary>
+            thread is paused
+            </summary>
+        </member>
+        <member name="F:XIL.VM.ThreadState.Done">
+            <summary>
+            thread has done executing
+            </summary>
+        </member>
+        <member name="T:XIL.VM.Thread">
+            <summary>
+            An execution thread
+            </summary>
+        </member>
+        <member name="F:XIL.VM.Thread.currentInstruction">
+            <summary>
+            instruction pointer
+            </summary>
+        </member>
+        <member name="P:XIL.VM.Thread.InstructionCount">
+            <summary>
+            program length
+            </summary>
+        </member>
+        <member name="F:XIL.VM.Thread.ExitCode">
+            <summary>
+            exit code
+            </summary>
+        </member>
+        <member name="F:XIL.VM.Thread.ReturnJump">
+            <summary>
+            where to return jump
+            </summary>
+        </member>
+        <member name="F:XIL.VM.Thread.FunctionReturn">
+            <summary>
+            where to return function
+            </summary>
+        </member>
+        <member name="F:XIL.VM.Thread.Priority">
+            <summary>
+            thread's priority
+            </summary>
+        </member>
+        <member name="F:XIL.VM.Thread.State">
+            <summary>
+            thread's state
+            </summary>
+        </member>
+        <member name="P:XIL.VM.Thread.IsLoaded">
+            <summary>
+            has the thread been loaded with a program
+            </summary>
+        </member>
+        <member name="P:XIL.VM.Thread.IsRunning">
+            <summary>
+            is the thread running
+            </summary>
+        </member>
+        <member name="P:XIL.VM.Thread.IsDoneExecuting">
+            <summary>
+            has the thread done running
+            </summary>
+        </member>
+        <member name="F:XIL.VM.Thread.IsRuntimeError">
+            <summary>
+            does the thread has a runtime error
+            </summary>
+        </member>
+        <member name="F:XIL.VM.Thread.RuntimeErrorMessage">
+            <summary>
+            runtime error's message
+            </summary>
+        </member>
+        <member name="M:XIL.VM.Thread.#ctor(XIL.VM.Priority)">
+            <summary>
+            init an empty thread
+            </summary>
+            <param name="priority"></param>
+        </member>
+        <member name="M:XIL.VM.Thread.#ctor(XIL.LangDef.Instruction[],System.String[],XIL.VM.Priority)">
+            <summary>
+            init a thread and load it with a program
+            </summary>
+            <param name="instrs"></param>
+            <param name="strs"></param>
+            <param name="priority"></param>
+        </member>
+        <member name="M:XIL.VM.Thread.LoadInstructions(XIL.LangDef.Instruction[],System.String[])">
+            <summary>
+            load a program into a thread
+            </summary>
+            <param name="instrs"></param>
+            <param name="strs"></param>
+        </member>
+        <member name="M:XIL.VM.Thread.GetString(System.Int32)">
+            <summary>
+            get a string from the thread's string table
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="P:XIL.VM.Thread.IsStackEmpty">
+            <summary>
+            Check if the stack is empty
+            </summary>
+        </member>
+        <member name="P:XIL.VM.Thread.StackTopIndex">
+            <summary>
+            stack's top index
+            </summary>
+        </member>
+        <member name="M:XIL.VM.Thread.Pop">
+            <summary>
+            Pop off tots and return it
+            </summary>
+            <returns>the poped value</returns>
+        </member>
+        <member name="M:XIL.VM.Thread.Push(System.Int32)">
+            <summary>
+            push a value on tots
+            </summary>
+            <param name="value">the value to push</param>
+            <returns>the pushed value</returns>
+        </member>
+        <member name="M:XIL.VM.Thread.Peek">
+            <summary>
+            peek the value on tots
+            </summary>
+            <returns>the value on tots</returns>
+        </member>
+        <member name="M:XIL.VM.Thread.Set(System.Int32,System.Int32)">
+            <summary>
+            Set the stack element at index to the given value
+            </summary>
+            <param name="index"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:XIL.VM.Thread.Get(System.Int32)">
+            <summary>
+            Get the value of the stack element at index
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XIL.VM.Thread.PushArray(System.Int32[])">
+            <summary>
+            push an array on tots
+            </summary>
+            <param name="array">the array to be pushed</param>
+        </member>
+        <member name="M:XIL.VM.Thread.PopArray(System.Int32,System.Int32)">
+            <summary>
+            pop an array from tots
+            </summary>
+            <param name="arrayIndex">where does the array start</param>
+            <param name="arraySize">what is the array's size</param>        
+            <returns></returns>
+        </member>
+        <member name="M:XIL.VM.Thread.Clear">
+            <summary>
+            clear the stack
+            </summary>
+        </member>
+        <member name="M:XIL.VM.Thread.Grow(System.Int32)">
+            <summary>
+            grow the stack
+            </summary>
+            <param name="newSize">new stack size</param>
+            <returns>current stack size</returns>
+        </member>
+        <member name="P:XIL.VM.Thread.CurrentFStack">
+            <summary>
+            Current function stack
+            </summary>
+        </member>
+        <member name="M:XIL.VM.Thread.PopF">
+            <summary>
+            Pop a function return address from stack
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XIL.VM.Thread.PeekF">
+            <summary>
+            Peek the top function return on stack
+            </summary>
+        </member>
+        <member name="M:XIL.VM.Thread.PushF(System.Int32)">
+            <summary>
+            Push a function return address on stack
+            </summary>
+        </member>
+        <member name="P:XIL.VM.Thread.Item(System.Int32)">
+            <summary>
+            get an instruction at <paramref name="index"/>, will throw exception if using negative or out of range index
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XIL.VM.Thread.FetchInstruction">
+            <summary>
+            fetch the next instruction and advance the instruction pointer
+            </summary>
+            <returns>the next instruction</returns>
+        </member>
+        <member name="M:XIL.VM.Thread.AppendInstruction(XIL.LangDef.Instruction)">
+            <summary>
+            append an instruction into the thread
+            Has not been implemented
+            for runtime modifying capability
+            </summary>
+            <param name="instr"></param>
+        </member>
+        <member name="M:XIL.VM.Thread.SetInstruction(System.Int32,XIL.LangDef.Instruction)">
+            <summary>
+            modify an instruction
+            for runtime modifying capability
+            </summary>
+            <param name="index"></param>
+            <param name="instr"></param>
+        </member>
+        <member name="M:XIL.VM.Thread.PauseExecution">
+            <summary>
+            pause this thread
+            </summary>
+        </member>
+        <member name="M:XIL.VM.Thread.EndExecution">
+            <summary>
+            end this thread
+            </summary>
+        </member>
+        <member name="M:XIL.VM.Thread.RuntimeError(System.String)">
+            <summary>
+            raise a runtime error on this thread
+            </summary>
+        </member>
+        <member name="T:XIL.VM.VirtualMachineVerboseLevel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:XIL.VM.VirtualMachineVerboseLevel.None">
+            <summary>
+            log nothing
+            </summary>
+        </member>
+        <member name="F:XIL.VM.VirtualMachineVerboseLevel.LoadtimeError">
+            <summary>
+            log loadtime error
+            </summary>
+        </member>
+        <member name="F:XIL.VM.VirtualMachineVerboseLevel.RuntimeError">
+            <summary>
+            log runtime error
+            </summary>
+        </member>
+        <member name="F:XIL.VM.VirtualMachineVerboseLevel.InstructionInfo">
+            <summary>
+            log instruction detail
+            </summary>
+        </member>
+        <member name="F:XIL.VM.VirtualMachineVerboseLevel.ThreadInfo">
+            <summary>
+            log thead information
+            </summary>
+        </member>
+        <member name="F:XIL.VM.VirtualMachineVerboseLevel.LoadtimeInfo">
+            <summary>
+            log loadtime information
+            </summary>
+        </member>
+        <member name="T:XIL.VM.InstructionAction">
+            <summary>
+            instruction delegate
+            </summary>
+        </member>
+        <member name="T:XIL.VM.VirtualMachine">
+            <summary>
+            A XIL virtual machine
+            </summary>
+        </member>
+        <member name="F:XIL.VM.VirtualMachine.InstructionMap">
+            <summary>
+            a list of instruction's implementation
+            </summary>
+        </member>
+        <member name="F:XIL.VM.VirtualMachine.InstructionMetaDataMap">
+            <summary>
+            a list of instruction's metadata
+            </summary>
+        </member>
+        <member name="F:XIL.VM.VirtualMachine.LoadedLibrary">
+            <summary>
+            a list of loaded instruction library's name
+            </summary>
+        </member>
+        <member name="F:XIL.VM.VirtualMachine.RandomNumberGenerator">
+            <summary>
+            random number generator
+            </summary>
+        </member>
+        <member name="F:XIL.VM.VirtualMachine.Exitcodes">
+            <summary>
+            exitcode of all thread
+            </summary>
+        </member>
+        <member name="P:XIL.VM.VirtualMachine.VerboseLevel">
+            <summary>
+            log verbosity level
+            </summary>
+        </member>
+        <member name="F:XIL.VM.VirtualMachine.TickElapsedSinceLastTimeSlice">
+            <summary>
+            time keeping
+            </summary>
+        </member>
+        <member name="M:XIL.VM.VirtualMachine.Tick">
+            <summary>
+            tick an update
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XIL.VM.VirtualMachine.#ctor(XIL.VM.VirtualMachineVerboseLevel,XIL.LangDef.IInstructionImplementation[])">
+            <summary>
+            init a vm with a list of instruction implementation
+            </summary>
+            <param name="instructionImplementations"></param>
+        </member>
+        <member name="M:XIL.VM.VirtualMachine.ContainLibrary(System.String)">
+            <summary>
+            check if a library has been loaded
+            </summary>
+            <param name="libname"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XIL.VM.VirtualMachine.LoadProgram(XIL.LangDef.Instruction[],System.String[])">
+            <summary>
+            load a program
+            </summary>
+            <param name="instrs"></param>
+            <param name="strs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XIL.VM.VirtualMachine.Run">
+            <summary>
+            run the virtual machine synchronously
+            </summary>
+        </member>
+        <member name="T:CoreInstruction">
+            <summary>
+            core instruction
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Jump(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            jump lable <para />
+            jump to the given label
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.JumpEqual(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            je lable <para />
+            jump to the given label if a = b
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.JumpNotEqual(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            jne lable <para />
+            jump to the given label if a != b
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.JumpGreater(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            jg lable <para />
+            jump to the given label if a > b
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.JumpGreaterOrEqual(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            jge lable <para />
+            jump to the given label if a >= b
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.JumpLesser(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            jl lable <para />
+            jump to the given label if a &lt; b
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.JumpLesserOrEqual(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            jle lable <para />
+            jump to the given label if a &lt;= b
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.JumpTrue(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            j1 lable <para />
+            jump to the given label if a == 1
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.JumpFalse(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            j0 lable <para />
+            jump to the given label if a == 0
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.JumpEqualLiteral(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            jel lable literal <para />
+            jump to the given label if a == literal
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.JumpNotEqualLiteral(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            jnel lable literal <para />
+            jump to the given label if a != literal
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Add(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            add <para />
+            add 2 tots and push the result
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Substract(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            sub <para />
+            subtract 2 tots and push the result
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Multiply(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            mul <para />
+            multiply 2 tots and push the result
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Divide(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            div <para />
+            divide 2 tots and push the result
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Modulus(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            mod <para />
+            modulus 2 tots and push the result
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Decrement(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            dec <para />
+            decrement tots
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Increment(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            inc <para />
+            increment tots
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Negate(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            neg <para />
+            negate tots
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Compare(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            cmp <para />
+            cmp 2 tots and push 1, 0 or -1
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Push(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            push &lt;var&gt; <para />
+            push the value of &lt;var&gt; on tots
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Yeet(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            yeet &lt;literal&gt; <para />
+            yeet &lt;literal&gt; on tots
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Pop(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            pop &lt;var&gt; <para />
+            pop the value of tots into &lt;var&gt;
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Load(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            load &lt;var&gt; &lt;literal&gt; <para />
+            load &lt;literal&gt; into &lt;var&gt;
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.GetStack(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            gets <para />
+            push the content of the value at the stack index <para/>
+            which is on tots onto the tots
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.SetStack(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            sets <para />
+            set the content of the value at the stack index <para/>
+            which is on second tots to tots
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Copy(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            copy &lt;var1&gt; &lt;var2&gt; <para />
+            copy value of &lt;var2&gt; into &lt;var1&gt;
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Duplicate(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            dup <para/>
+            duplicate tots
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Swap(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            swap <para/>
+            swap 2 tots
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Remove(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            remove <para/>
+            remove tots
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Exit(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            exit <para/>
+            stop executing, set exit code to tots and clear the stack 
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Pause(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            pause <para/>
+            wait for the &lt;tots&gt; ms
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Halt(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            halt <para/>
+            halt execution, can only be unhalt by another thread or by the vm
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Unhalt(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            unhalt <para/>
+            unhalt another thread indicate by &lt;tots&gt;
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Call(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            call &lt;label&gt; <para />
+            store the current ic into return target and jump to the given label
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Return(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            ret <para />
+            jump to the return target
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Random(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            rand <para />
+            push a random value on tots
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.RandSeed(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            randseed &lt;var&gt; <para />
+            set the random seed of the vm
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.RandomMax(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            randmax &lt;max&gt; <para />
+            push a random value on tots
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.RandomInRange(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            randmax &lt;max&gt; <para />
+            push a random value on tots
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.Nooperation(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            nop <para />
+            do nothing
+            </summary>
+        </member>
+        <member name="M:CoreInstruction.BreakPoint(XIL.VM.Thread,System.Int32,System.Int32)">
+            <summary>
+            breakpoint <para />
+            set breakpoint
+            </summary>
+        </member>
+    </members>
+</doc>
