@@ -41,3 +41,10 @@ Push-Location .\day4
 dotnet run
 Pop-Location
 Write-Host ""
+
+#day 5
+Write-Host "day5:"
+Push-Location .\day5
+dotnet run
+Pop-Location
+Write-Host ""
