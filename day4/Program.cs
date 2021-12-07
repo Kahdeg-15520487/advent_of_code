@@ -44,7 +44,7 @@ namespace day4
             Console.WriteLine("last bingo: {0} : {1}", bingoed.Last(), boards[bingoed.Last()].score);
             Console.WriteLine(boards[bingoed.Last()]);
 
-            Console.ReadLine();
+            
         }
     }
 

@@ -16,7 +16,7 @@ namespace day5
             Console.WriteLine("hor/ver only: {0}", world.GetOverlapPoint().Count());
             world = new World(lines, false);
             Console.WriteLine("hor/ver/diag: {0}", world.GetOverlapPoint().Count());
-            Console.ReadLine();
+            
         }
     }
 

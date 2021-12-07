@@ -34,7 +34,7 @@ namespace day1
                 }
             }
             Console.WriteLine(step2);
-            Console.ReadLine();
+            
         }
     }
 }

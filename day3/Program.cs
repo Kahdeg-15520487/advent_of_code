@@ -38,7 +38,7 @@ namespace day3
             Console.WriteLine("o2 = {0}", o2);
             Console.WriteLine("co2 = {0}", co2);
             Console.WriteLine("life support = {0}", o2 * co2);
-            Console.ReadLine();
+            
         }
 
         private static uint FindRating(int[][] inputs, bool criteria)
