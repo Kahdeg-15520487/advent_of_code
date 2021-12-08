@@ -1,50 +1,83 @@
-﻿using System;
+﻿using AOC;
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace day4
+namespace year2021.day4
 {
-    class Program
+    class day4 : Day
     {
-        static void Main(string[] args)
+        string[] inputs;
+        private (Board first, Board last) result;
+
+        void d(string[] args)
         {
             var raw = File.ReadAllText("input").Split(new[] { $"{Environment.NewLine}{Environment.NewLine}", "\n\n" }, StringSplitOptions.RemoveEmptyEntries).ToArray();
 
-            var drawn = raw[0].Split(",", StringSplitOptions.RemoveEmptyEntries).Select(c => int.Parse(c)).ToArray();
-            var boards = raw.Skip(1).Select(rb => new Board(rb.Split(new[] { " ", "\n", Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).Select(c => int.Parse(c)).ToArray())).ToList();
+        }
+
+        public override void UseInput()
+        {
+            inputs = Utility.Get_StringList_Custom(Utility.input.Read(), $"{Environment.NewLine}{Environment.NewLine}", "\n\n");
+        }
+
+        public override void UseSample()
+        {
+            inputs = Utility.Get_StringList_Custom(Utility.sample.Read(), $"{Environment.NewLine}{Environment.NewLine}", "\n\n");
+        }
+
+        public override string Part1()
+        {
+            this.result = Solve();
+
+            sb.AppendFormat("first bingo: score: {0}", this.result.first.score);
+            sb.AppendLine();
+            sb.AppendLine(this.result.first.ToString());
+
+            return base.Part1();
+        }
+
+        public override string Part2()
+        {
+            sb.AppendFormat("last bingo: score: {0}", this.result.last.score);
+            sb.AppendLine();
+            sb.Append(this.result.last);
+            return base.Part2();
+        }
+
+        private (Board first, Board last) Solve()
+        {
+            var drawn = Utility.ParseToInt_StringArr(Utility.Get_StringList_Comma(inputs[0]));// inputs[0].Split(",", StringSplitOptions.RemoveEmptyEntries).Select(c => int.Parse(c)).ToArray();
+            var boards = inputs.Skip(1).Select(rb => new Board(rb.Split(new[] { " ", "\n", Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).Select(c => int.Parse(c)).ToArray())).ToList();
             var bingoed = new List<int>();
             foreach (var d in drawn)
             {
-                Console.WriteLine("drawn: {0}", d);
+                //Console.WriteLine("drawn: {0}", d);
                 int bi = 0;
                 foreach (var b in boards)
                 {
-                    Console.WriteLine("board {0}", bi);
+                    //Console.WriteLine("board {0}", bi);
                     if (b.isBingoed)
                     {
-                        Console.WriteLine("bingoed, skipping");
+                        //Console.WriteLine("bingoed, skipping");
                         bi++;
                         continue;
                     }
                     var score = b.GetScore(d);
                     if (score > 0)
                     {
-                        Console.WriteLine("bingo {0}", score);
+                        //Console.WriteLine("bingo {0}", score);
                         bingoed.Add(bi);
                     }
-                    Console.WriteLine(b);
-                    Console.WriteLine("=====");
+                    //Console.WriteLine(b);
+                    //Console.WriteLine("=====");
                     bi++;
                 }
             }
-            Console.WriteLine("first bingo: {0} : {1}", bingoed.First(), boards[bingoed.First()].score);
-            Console.WriteLine(boards[bingoed.First()]);
-            Console.WriteLine("last bingo: {0} : {1}", bingoed.Last(), boards[bingoed.Last()].score);
-            Console.WriteLine(boards[bingoed.Last()]);
-
-            
+            return (boards[bingoed.First()], boards[bingoed.Last()]);
         }
     }
 
@@ -56,9 +89,11 @@ namespace day4
         public int score;
         public bool isBingoed = false;
 
-        public (int n, int c) this[int x, int y] {
+        public (int n, int c) this[int x, int y]
+        {
             get { return (board[y * size + x], check[y * size + x]); }
-            set {
+            set
+            {
                 board[y * size + x] = value.n;
                 check[y * size + x] = value.c;
             }

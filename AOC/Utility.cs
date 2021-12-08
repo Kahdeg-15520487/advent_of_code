@@ -25,6 +25,11 @@ namespace AOC
         public static readonly Input input = new Input("input");
         public static readonly Input sample = new Input("sample");
 
+        public static string[] Get_StringList_Custom(string raw, params string[] separators)
+        {
+            return raw.Split(separators, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        }
+
         public static string[] Get_StringList_Comma(string raw)
         {
             return raw.Split(",", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
@@ -38,6 +43,14 @@ namespace AOC
         public static int[] ParseToInt_StringArr(string[] raw)
         {
             return raw.Select(r => int.Parse(r)).ToArray();
+        }
+    }
+
+    public static class ExtensionMethod
+    {
+        public static int[] ReadInts(this Input input)
+        {
+            return Utility.ParseToInt_StringArr(Utility.Get_StringList_Comma(input.Read()));
         }
     }
 }

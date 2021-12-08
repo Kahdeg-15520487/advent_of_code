@@ -1,22 +1,41 @@
-﻿using System;
+﻿using AOC;
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace day5
+namespace year2021.day5
 {
-    class Program
+    class day5 : Day
     {
-        static void Main(string[] args)
+        Line[] inputs;
+
+        public override void UseInput()
         {
-            var lines = File.ReadAllLines("input").Select(l => Line.Parse(l)).ToArray();
-            //var lines = File.ReadAllLines("sample").Select(l => Line.Parse(l)).ToArray();
-            World world = new World(lines, true);
-            Console.WriteLine("hor/ver only: {0}", world.GetOverlapPoint().Count());
-            world = new World(lines, false);
-            Console.WriteLine("hor/ver/diag: {0}", world.GetOverlapPoint().Count());
-            
+            inputs = Utility.input.ReadByLines().Select(l => Line.Parse(l)).ToArray();
+        }
+
+        public override void UseSample()
+        {
+            inputs = Utility.sample.ReadByLines().Select(l => Line.Parse(l)).ToArray();
+        }
+
+        public override string Part1()
+        {
+            World world = new World(inputs, true);
+            sb.AppendFormat("hor/ver only: {0}", world.GetOverlapPoint().Count());
+            sb.AppendLine();
+            return base.Part1();
+        }
+
+        public override string Part2()
+        {
+            World world = new World(inputs, false);
+            sb.AppendFormat("hor/ver/diag: {0}", world.GetOverlapPoint().Count());
+            sb.AppendLine();
+            return base.Part2();
         }
     }
 
@@ -24,12 +43,14 @@ namespace day5
     {
         const int size = 1000;
         int[] matrix;
-        public int this[int x, int y] {
+        public int this[int x, int y]
+        {
             get { return matrix[y * size + x]; }
             set { matrix[y * size + x] = value; }
         }
 
-        public int this[Point p] {
+        public int this[Point p]
+        {
             get { return matrix[p.Y * size + p.X]; }
             set { matrix[p.Y * size + p.X] = value; }
         }

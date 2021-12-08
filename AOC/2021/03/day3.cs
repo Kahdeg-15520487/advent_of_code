@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace day3
+namespace year2021.day3
 {
     class day3 : Day
     {
@@ -42,7 +42,9 @@ namespace day3
             uint gamma = Convert.ToUInt32(new string(gammaDigit), 2);
             uint epsilon = Convert.ToUInt32(new string(epsilonDigit), 2);
             sb.AppendFormat("gamma = {0}", gamma);
+            sb.AppendLine();
             sb.AppendFormat("epsilon = {0}", epsilon);
+            sb.AppendLine();
             sb.AppendFormat("power consumption = {0}", gamma * epsilon);
             return base.Part1();
         }
@@ -52,7 +54,9 @@ namespace day3
             uint o2 = FindRating(inputs, true);
             uint co2 = FindRating(inputs, false);
             sb.AppendFormat("o2 = {0}", o2);
+            sb.AppendLine();
             sb.AppendFormat("co2 = {0}", co2);
+            sb.AppendLine();
             sb.AppendFormat("life support = {0}", o2 * co2);
             return base.Part2();
         }

@@ -1,13 +1,16 @@
-﻿using System;
+﻿using AOC;
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace day8
+namespace year2021.day8
 {
-    class Program
+    class day8 : Day
     {
-        static void Main(string[] args)
+        Line[] inputs;
+        static void d(string[] args)
         {
             //var lines = File.ReadAllLines("sample").Select(l => new Line(l)).ToArray();
             var lines = File.ReadAllLines("input").Select(l => new Line(l)).ToArray();
@@ -19,6 +22,26 @@ namespace day8
 
             Console.WriteLine("{0}", lines.Sum(l => l.Output.Where(o => o != "-").Count()));
             Console.WriteLine("{0}", lines.Sum(l => l.Number));
+        }
+
+        public override void UseInput()
+        {
+            inputs = Utility.input.ReadByLines().Select(l => new Line(l)).ToArray();
+        }
+
+        public override void UseSample()
+        {
+            inputs = Utility.sample.ReadByLines().Select(l => new Line(l)).ToArray();
+        }
+
+        public override string Part1()
+        {
+            return base.Part1();
+        }
+
+        public override string Part2()
+        {
+            return base.Part2();
         }
     }
 

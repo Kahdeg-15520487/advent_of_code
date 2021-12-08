@@ -1000,7 +1000,7 @@ down 5
 down 6
 forward 9
 get_hor
+print
 get_dep
-mul
 print
 exit

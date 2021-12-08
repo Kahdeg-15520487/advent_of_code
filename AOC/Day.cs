@@ -16,12 +16,16 @@ namespace AOC
 
         public virtual string Part1()
         {
-            return sb.ToString();
+            var t = sb.ToString();
+            sb.Clear();
+            return t;
         }
 
         public virtual string Part2()
         {
-            return sb.ToString();
+            var t = sb.ToString();
+            sb.Clear();
+            return t;
         }
 
         public abstract void UseInput();

@@ -1,25 +1,17 @@
-﻿using System;
+﻿using AOC;
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace day6
+namespace year2021.day6
 {
-    class Program
+    class day6 : Day
     {
-        static void Main(string[] args)
+        int[] input;
+        static void d(string[] args)
         {
-            //var fishes = File.ReadAllText("sample").Split(",", StringSplitOptions.RemoveEmptyEntries).Select(n => new Fish(int.Parse(n)));
-            //var fishes = File.ReadAllText("input").Split(",", StringSplitOptions.RemoveEmptyEntries).Select(n => new Fish(int.Parse(n)));
-            //var world = new World(fishes);
-            //for (int i = 0; i < 256; i++)
-            //{
-            //    world.Tick();
-            //    //Console.WriteLine("After {0} day(s): {1} fish(es):{2}", i.ToString().PadLeft(2, ' '), world.Count.ToString().PadLeft(2, ' '), world);
-            //}
-            //Console.WriteLine("After 80 days: {0} fishes", world.Count.ToString().PadLeft(2, ' '));
-            //Console.ReadLine();
-
             var fishes = File.ReadAllText("input").Split(",", StringSplitOptions.RemoveEmptyEntries).Select(n => int.Parse(n)).ToArray();
             World world = new World(fishes);
 
@@ -28,16 +20,54 @@ namespace day6
                 world.Tick();
                 Console.WriteLine("day {0}: {1}", d.ToString().PadLeft(2, ' '), world.Count);
             }
+        }
 
-            
+        public override void UseInput()
+        {
+            input = Utility.ParseToInt_StringArr(Utility.Get_StringList_Comma(Utility.input.Read()));
+        }
+
+        public override void UseSample()
+        {
+            input = Utility.ParseToInt_StringArr(Utility.Get_StringList_Comma(Utility.sample.Read()));
+        }
+
+        public override string Part1()
+        {
+            World world = new World(input);
+
+            for (int d = 0; d < 80; d++)
+            {
+                world.Tick();
+            }
+
+            sb.AppendLine(world.Count.ToString());
+
+            return base.Part1();
+        }
+
+        public override string Part2()
+        {
+            World world = new World(input);
+
+            for (int d = 0; d < 256; d++)
+            {
+                world.Tick();
+            }
+
+            sb.AppendLine(world.Count.ToString());
+
+            return base.Part2();
         }
     }
 
     class World
     {
         public double[] FishGens { get; set; }
-        public double Count {
-            get {
+        public double Count
+        {
+            get
+            {
                 double sum = 0;
                 for (int g = 0; g < 9; g++)
                 {
@@ -56,13 +86,7 @@ namespace day6
         }
 
         public void Tick()
-        {/*
-          * gen 0 will be the next gen 8 and gen 6
-          * gen 1 will be the next gen 0
-          * 
-          * 
-          * 
-          */
+        {
             var newFish = FishGens[0];
             var reproducedFish = FishGens[0];
 
@@ -70,7 +94,6 @@ namespace day6
 
             FishGens[8] = newFish;
             FishGens[6] += reproducedFish;
-
         }
 
         public static void LeftShiftArray(double[] arr, int shift)

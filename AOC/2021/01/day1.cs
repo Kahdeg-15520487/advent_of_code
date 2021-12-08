@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace day1
+namespace year2021.day1
 {
-    public class day1 : IDay
+    class day1 : IDay
     {
         int[] inputs;
         public void UseInput()
