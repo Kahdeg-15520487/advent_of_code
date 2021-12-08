@@ -10,19 +10,6 @@ namespace year2021.day8
     class day8 : Day
     {
         Line[] inputs;
-        static void d(string[] args)
-        {
-            //var lines = File.ReadAllLines("sample").Select(l => new Line(l)).ToArray();
-            var lines = File.ReadAllLines("input").Select(l => new Line(l)).ToArray();
-
-            foreach (var line in lines)
-            {
-                Console.WriteLine(line);
-            }
-
-            Console.WriteLine("{0}", lines.Sum(l => l.Output.Where(o => o != "-").Count()));
-            Console.WriteLine("{0}", lines.Sum(l => l.Number));
-        }
 
         public override void UseInput()
         {
@@ -36,11 +23,13 @@ namespace year2021.day8
 
         public override string Part1()
         {
+            sb.AppendFormat("{0}", inputs.Sum(l => l.Output.Where(o => o == "1" || o == "4" || o == "7" || o == "8").Count()));
             return base.Part1();
         }
 
         public override string Part2()
         {
+            sb.AppendFormat("{0}", inputs.Sum(l => l.Number));
             return base.Part2();
         }
     }
