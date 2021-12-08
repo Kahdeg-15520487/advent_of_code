@@ -1,15 +1,26 @@
-﻿using System;
+﻿using AOC;
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
 namespace day1
 {
-    class Program
+    public class day1 : IDay
     {
-        static void Main(string[] args)
+        int[] inputs;
+        public void UseInput()
         {
-            var inputs = File.ReadAllLines("input").Select(l => int.Parse(l)).ToArray();
+            inputs = Utility.ParseToInt_StringArr(Utility.input.ReadByLines());
+        }
+        public void UseSample()
+        {
+            inputs = Utility.ParseToInt_StringArr(Utility.sample.ReadByLines());
+        }
+
+        public string Part1()
+        {
             var step = 0;
             for (int i = 1; i < inputs.Length; i++)
             {
@@ -18,8 +29,11 @@ namespace day1
                     step++;
                 }
             }
-            Console.WriteLine(step);
+            return step.ToString();
+        }
 
+        public string Part2()
+        {
             var step2 = 0;
             List<int> slides = new List<int>();
             for (int i = 0; i < inputs.Length - 2; i++)
@@ -33,8 +47,7 @@ namespace day1
                     step2++;
                 }
             }
-            Console.WriteLine(step2);
-            
+            return step2.ToString();
         }
     }
 }
