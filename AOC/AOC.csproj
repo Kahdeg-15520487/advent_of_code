@@ -5,8 +5,13 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
   <ItemGroup>
     <Folder Include="2021\02\" />
+    <Folder Include="2021\13\tessdata\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -61,6 +66,9 @@
     <None Update="2021\09\input">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="2021\09\s2">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="2021\09\sample">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -86,6 +94,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="2021\13\sample">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="2021\13\tessdata\eng.traineddata">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="2021\14\input">
@@ -163,7 +174,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FloodSpill" Version="1.0.4" />
     <PackageReference Include="Goblinfactory.Konsole" Version="6.2.2" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+    <PackageReference Include="Tesseract" Version="4.1.1" />
     <PackageReference Include="XIL" Version="2.0.0" />
     <PackageReference Include="XIL.StandardLibrary" Version="3.0.0" />
   </ItemGroup>

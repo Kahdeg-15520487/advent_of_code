@@ -10,9 +10,11 @@ namespace year2021.day12
 {
     public class day12 : Day
     {
+        private List<string[]> inputs;
+
         public override void UseInput()
         {
-            throw new NotImplementedException();
+            inputs = Utility.sample.ReadByLines().Select(l => Utility.Get_StringList_Comma(l)).ToList();
         }
 
         public override void UseSample()
@@ -21,6 +23,8 @@ namespace year2021.day12
         }
         public override string Part1()
         {
+
+
             return base.Part1();
         }
 
@@ -28,5 +32,11 @@ namespace year2021.day12
         {
             return base.Part2();
         }
+    }
+
+    class Cave
+    {
+        public bool IsBig { get; private set; }
+        //public List<Cave> 
     }
 }
