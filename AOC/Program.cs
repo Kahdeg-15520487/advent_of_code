@@ -8,7 +8,7 @@ namespace AOC
         static void Main(string[] args)
         {
             int year = 2021;
-            int d = 13;
+            int d = 16;
             string currentWorkDir = Directory.GetCurrentDirectory();
             for (int i = 1; i <= 25; i++)
             {

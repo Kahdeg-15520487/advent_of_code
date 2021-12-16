@@ -40,6 +40,16 @@ namespace AOC
             return raw.Split(" ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
         }
 
+        public static string[] Get_StringList_DoubleLineBreak(string raw)
+        {
+            return raw.Split(new string[] { $"{Environment.NewLine}{Environment.NewLine}", "\n\n" }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        }
+
+        public static string[] Get_StringList_LineBreak(string raw)
+        {
+            return raw.Split(new string[] { Environment.NewLine, "\n" }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        }
+
         public static int[] ParseToInt_StringArr(string[] raw)
         {
             return raw.Select(r => int.Parse(r)).ToArray();
@@ -51,6 +61,12 @@ namespace AOC
         public static int[] ReadInts(this Input input)
         {
             return Utility.ParseToInt_StringArr(Utility.Get_StringList_Comma(input.Read()));
+        }
+
+        public static IEnumerable<TResult> SelectTwo<TSource, TResult>(this IEnumerable<TSource> source,
+                                                                        Func<TSource, TSource, TResult> selector)
+        {
+            return Enumerable.Zip(source, source.Skip(1), selector);
         }
     }
 }
