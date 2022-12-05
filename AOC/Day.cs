@@ -13,6 +13,7 @@ namespace AOC
     public abstract class Day : IDay
     {
         protected StringBuilder sb = new StringBuilder();
+        protected string[] inputs;
 
         public virtual string Part1()
         {
@@ -28,8 +29,14 @@ namespace AOC
             return t;
         }
 
-        public abstract void UseInput();
+        public virtual void UseInput()
+        {
+            inputs = Utility.input.ReadByLines();
+        }
 
-        public abstract void UseSample();
+        public virtual void UseSample()
+        {
+            inputs = Utility.sample.ReadByLines();
+        }
     }
 }

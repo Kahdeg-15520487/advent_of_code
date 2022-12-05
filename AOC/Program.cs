@@ -7,8 +7,8 @@ namespace AOC
     {
         static void Main(string[] args)
         {
-            int year = 2021;
-            int d = 16;
+            int year = 2022;
+            int d = 5;
             string currentWorkDir = Directory.GetCurrentDirectory();
             for (int i = 1; i <= 25; i++)
             {
@@ -18,7 +18,7 @@ namespace AOC
                 }
                 try
                 {
-                    Type dayType = Type.GetType($"year{year}.day{i}.day{i}");
+                    Type dayType = Type.GetType($"AOC.year{year}.day{i}.day{i}");
 
                     if (dayType == null)
                     {
@@ -32,7 +32,7 @@ namespace AOC
                         goto skip;
                     }
 
-                    Directory.SetCurrentDirectory($"{year}/{i.ToString().PadLeft(2, '0')}");
+                    Directory.SetCurrentDirectory($"year{year}/day{i}");
 
                     day.UseInput();
                     Console.WriteLine("Day {0}:", i);
@@ -52,7 +52,7 @@ namespace AOC
                     Console.WriteLine();
                 }
 
-                skip:
+            skip:
                 Directory.SetCurrentDirectory(currentWorkDir);
             }
         }

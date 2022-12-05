@@ -54,6 +54,11 @@ namespace AOC
         {
             return raw.Select(r => int.Parse(r)).ToArray();
         }
+
+        public static int[] ParseToInt_StringArr_EmptyStringZero(string[] raw)
+        {
+            return raw.Select(r => string.IsNullOrWhiteSpace(r) ? 0 : int.Parse(r)).ToArray();
+        }
     }
 
     public static class ExtensionMethod
